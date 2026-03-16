@@ -44,7 +44,8 @@ class GameSession:
             self.board = generate_scavenger_board()
         elif mode == GameMode.CARD_DECK:
             self.board = []
-            self.draw_card()
+            # Start with no card drawn so user sees the "draw" prompt
+            self.current_card = None
         else:
             self.board = generate_board()
             
