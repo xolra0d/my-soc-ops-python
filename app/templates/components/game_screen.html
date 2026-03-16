@@ -16,7 +16,7 @@
 
     <!-- Instructions -->
     <p class="text-center text-gray-500 text-sm py-2 px-4" style="color: #00f5ff; text-shadow: 0 0 8px #00f5ff; font-weight: 600; letter-spacing: 1px;">
-        ▶ Tap a square when you find someone ◀
+        ▶ {% if session.game_mode == 'scavenger' %}Locate all targets{% else %}Tap a square when you find someone{% endif %} ◀
     </p>
 
     <!-- Bingo indicator -->
@@ -26,9 +26,20 @@
     </div>
     {% endif %}
 
+    <!-- Scavenger Complete indicator -->
+    {% if session.game_state == 'complete' %}
+    <div class="bg-green-100 text-green-800 text-center py-2 font-semibold text-sm animate-neon-glow" style="background: #00f5ff; color: #1a1a1a; border: 3px solid #ffff00; box-shadow: 0 0 20px #00f5ff, 0 0 40px #ff006e;">
+        ▸ MISSION COMPLETE! ALL TARGETS SECURED ◂
+    </div>
+    {% endif %}
+
     <!-- Board -->
     <div class="flex-1 flex items-center justify-center p-3">
-        {% include "components/bingo_board.html" %}
+        {% if session.game_mode == 'scavenger' %}
+            {% include "components/scavenger_list.html" %}
+        {% else %}
+            {% include "components/bingo_board.html" %}
+        {% endif %}
     </div>
 </div>
 

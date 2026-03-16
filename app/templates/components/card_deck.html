@@ -1,0 +1,70 @@
+<div id="game-container" class="min-h-full flex flex-col items-center justify-center p-4 text-white relative bg-black landing-container">
+    <!-- Background -->
+    <div class="absolute inset-0 z-0 pointer-events-none opacity-20" style="background-image: url('data:image/svg+xml,%3Csvg width=\'40\' height=\'40\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cpath d=\'M0 0h40v40H0z\' fill=\'none\'/%3E%3Cpath d=\'M0 40h40M40 0v40M0 0v40\' stroke=\'%2300f5ff\' stroke-opacity=\'0.2\'/%3E%3C/svg%3E');"></div>
+
+    <div class="relative z-10 w-full max-w-md flex flex-col items-center gap-8">
+        
+        <!-- Header -->
+        <h1 class="text-3xl font-bold text-[#00f5ff] glitch-text text-center" 
+            style="font-family: 'Press Start 2P', cursive; text-shadow: 3px 3px 0 #ff006e;">
+            CARD SHUFFLE
+        </h1>
+
+        <!-- Card Area -->
+        <div class="perspective-1000 w-full flex justify-center">
+            <div id="card-display"
+                 class="relative w-72 h-96 bg-black border-2 border-[#00f5ff] rounded-lg shadow-[0_0_15px_rgba(0,245,255,0.4)] flex flex-col items-center justify-center p-6 cursor-pointer hover:shadow-[0_0_30px_rgba(0,245,255,0.6)] transition-all transform hover:scale-105 active:scale-95 group animate-flip-in"
+                 style="background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);"
+                 hx-post="/draw-card"
+                 hx-target="#card-display"
+                 hx-select="#card-display"
+                 hx-swap="outerHTML swap:300ms">
+                
+                <!-- Card Inner Border/Grid -->
+                <div class="absolute inset-2 border border-[#39ff14] opacity-20 rounded pointer-events-none"></div>
+                
+                <!-- Cyberpunk Decorations -->
+                <div class="absolute top-4 left-4 text-[10px] text-[#00f5ff] font-mono opacity-60">ID_7382</div>
+                <div class="absolute top-4 right-4 text-[10px] text-[#ff006e] font-mono opacity-80">SECURE</div>
+                
+                <!-- Tech Corners -->
+                <div class="absolute -top-1 -left-1 w-6 h-6 border-t-2 border-l-2 border-[#00f5ff]"></div>
+                <div class="absolute -top-1 -right-1 w-6 h-6 border-t-2 border-r-2 border-[#00f5ff]"></div>
+                <div class="absolute -bottom-1 -left-1 w-6 h-6 border-b-2 border-l-2 border-[#00f5ff]"></div>
+                <div class="absolute -bottom-1 -right-1 w-6 h-6 border-b-2 border-r-2 border-[#00f5ff]"></div>
+                
+                {% if session.current_card %}
+                    <div class="text-center animate-fade-in-up w-full relative z-10">
+                        <div class="mb-2 text-[#39ff14] text-xs font-mono tracking-widest border-b border-[#39ff14] inline-block pb-1">TARGET_DATA</div>
+                        <div class="text-5xl mb-6 mt-4 drop-shadow-[0_0_10px_rgba(255,255,255,0.5)]">💾</div>
+                        <p class="text-xl font-bold text-white leading-relaxed font-mono px-2" style="text-shadow: 0 0 5px #00f5ff;">
+                            {{ session.current_card }}
+                        </p>
+                        <div class="mt-6 text-[#ff006e] text-xs font-mono animate-pulse">>>> AWAITING_INPUT</div>
+                    </div>
+                {% else %}
+                    <div class="text-center animate-pulse relative z-10">
+                        <div class="text-6xl mb-6 text-[#00f5ff] drop-shadow-[0_0_15px_rgba(0,245,255,0.6)]">🎴</div>
+                        <h2 class="text-xl text-[#00f5ff] font-bold font-mono mb-2">ACCESS TERMINAL</h2>
+                        <p class="text-sm text-gray-400 font-mono">TAP TO DECRYPT</p>
+                    </div>
+                {% endif %}
+
+            </div>
+        </div>
+
+        <!-- Instructions -->
+        <p class="text-[#39ff14] font-mono text-sm text-center opacity-80">
+            // TAP CARD TO GENERATE NEW OBJECTIVE //
+        </p>
+
+        <!-- Back Button -->
+        <button hx-post="/reset" 
+                hx-target="#game-container" 
+                hx-swap="outerHTML"
+                class="mt-4 text-[#ff006e] hover:text-white font-mono border border-[#ff006e] px-6 py-3 rounded hover:bg-[#ff006e] transition-colors shadow-[0_0_10px_rgba(255,0,110,0.3)] hover:shadow-[0_0_20px_rgba(255,0,110,0.6)]">
+            &lt; ABORT MISSION
+        </button>
+
+    </div>
+</div>

@@ -31,6 +31,14 @@ def toggle_square(
     ]
 
 
+def generate_scavenger_board() -> list[BingoSquareData]:
+    """Generate a scavenger hunt board with all questions."""
+    return [
+        BingoSquareData(id=i, text=q)
+        for i, q in enumerate(QUESTIONS)
+    ]
+
+
 @functools.cache
 def _get_winning_lines() -> tuple[BingoLine, ...]:
     """Get all possible winning lines (cached)."""

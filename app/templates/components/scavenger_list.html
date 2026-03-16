@@ -1,0 +1,64 @@
+<div class="flex flex-col gap-2 w-full max-w-md mx-auto p-4" style="background: #1a1a1a; border: 4px solid #00f5ff; box-shadow: 0 0 30px #00f5ff, inset 0 0 20px rgba(0, 245, 255, 0.1);">
+    
+    <!-- Progress Bar -->
+    <div class="mb-4">
+        <div class="flex justify-between text-xs text-cyan-400 font-mono mb-1">
+            <span>MISSION PROGRESS</span>
+            <span>{{ "%.0f"|format(session.progress) }}%</span>
+        </div>
+        <div class="w-full bg-gray-800 h-4 border border-cyan-800 relative overflow-hidden">
+            <div class="h-full bg-cyan-500 transition-all duration-500 ease-out flex items-center justify-center relative"
+                 style="width: {{ session.progress }}%; box-shadow: 0 0 10px #00f5ff;">
+                <!-- Scanline effect on progress bar -->
+                <div class="absolute inset-0 bg-gradient-to-r from-transparent via-white to-transparent opacity-20 w-full animate-pulse"></div>
+            </div>
+            <!-- Grid lines -->
+            <div class="absolute inset-0 bg-[linear-gradient(90deg,transparent_19%,#000_20%)] bg-[length:20%_100%] opacity-30"></div>
+        </div>
+    </div>
+
+    <div class="space-y-2 h-[60vh] overflow-y-auto pr-2 custom-scrollbar">
+        {% for square in session.board %}
+        <button
+            hx-post="/toggle/{{ square.id }}"
+            hx-target="#game-container"
+            hx-swap="outerHTML"
+            class="w-full text-left p-3 flex items-center gap-3 transition-all duration-150 group border border-gray-800 hover:border-cyan-700 relative overflow-hidden"
+            style="{% if square.is_marked %}background: rgba(0, 245, 255, 0.15); border-color: #00f5ff;{% else %}background: #222;{% endif %}">
+            
+            <!-- Checkbox visual -->
+            <div class="w-6 h-6 border-2 flex items-center justify-center transition-colors duration-200 shrink-0"
+                 style="{% if square.is_marked %}border-color: #00f5ff; background: #00f5ff; box-shadow: 0 0 10px #00f5ff;{% else %}border-color: #555;{% endif %}">
+                {% if square.is_marked %}
+                <span class="text-black font-bold text-lg leading-none">✓</span>
+                {% endif %}
+            </div>
+
+            <span class="font-mono text-sm transition-colors duration-200 {% if square.is_marked %}text-cyan-300 line-through opacity-70{% else %}text-gray-300 group-hover:text-white{% endif %}">
+                {{ square.text }}
+            </span>
+
+            <!-- Decoration -->
+            {% if square.is_marked %}
+            <div class="absolute right-2 top-1/2 -translate-y-1/2 w-1 h-1 bg-cyan-400 rounded-full shadow-[0_0_5px_#00f5ff]"></div>
+            {% endif %}
+        </button>
+        {% endfor %}
+    </div>
+</div>
+
+<style>
+.custom-scrollbar::-webkit-scrollbar {
+    width: 8px;
+}
+.custom-scrollbar::-webkit-scrollbar-track {
+    background: #1a1a1a; 
+}
+.custom-scrollbar::-webkit-scrollbar-thumb {
+    background: #333; 
+    border: 1px solid #555;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+    background: #00f5ff; 
+}
+</style>
