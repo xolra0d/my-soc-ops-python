@@ -1,4 +1,4 @@
-<div class="grid grid-cols-5 gap-1 w-full max-w-md mx-auto aspect-square">
+<div class="grid grid-cols-5 gap-1 w-full max-w-md mx-auto aspect-square p-4" style="background: #1a1a1a; border: 4px solid #ff006e; box-shadow: 0 0 30px #ff006e, inset 0 0 20px rgba(255, 0, 110, 0.1);">
     {% for square in session.board %}
     {% set is_winning = square.id in session.winning_square_ids %}
     <button
@@ -8,19 +8,36 @@
         hx-swap="outerHTML"
         {% endif %}
         {% if square.is_free_space %}disabled{% endif %}
-        class="relative flex items-center justify-center p-1 text-center border border-gray-300 rounded transition-all duration-150 select-none min-h-[60px] text-xs leading-tight
+        class="relative flex items-center justify-center p-1 text-center select-none min-h-[60px] text-xs leading-tight transition-all duration-150"
+        style="
         {%- if square.is_marked %}
-            {%- if is_winning %} bg-amber-200 border-amber-400 text-amber-900
-            {%- else %} bg-marked border-marked-border text-green-800
+            {%- if is_winning %}
+            border: 3px solid #ffff00;
+            background: #39ff14;
+            color: #1a1a1a;
+            box-shadow: 0 0 20px #ffff00, inset 0 0 10px rgba(255, 255, 0, 0.3);
+            font-weight: 700;
+            text-shadow: 0 0 5px #1a1a1a;
+            {%- else %}
+            border: 3px solid #00f5ff;
+            background: #2a2a2a;
+            color: #39ff14;
+            box-shadow: 0 0 15px #00f5ff, inset 0 0 8px rgba(0, 245, 255, 0.2);
+            text-shadow: 0 0 8px #39ff14;
             {%- endif %}
-        {%- else %} bg-white text-gray-700 active:bg-gray-100
+        {%- else %}
+            border: 3px solid #ff006e;
+            background: #1a1a1a;
+            color: #ffff00;
+            box-shadow: 0 0 10px #ff006e;
+            text-shadow: 0 0 8px #ffff00;
         {%- endif %}
-        {%- if square.is_free_space %} font-bold text-sm{% endif %}"
+        {%- if square.is_free_space %} font-weight: 700; font-size: 0.9rem;{% endif %}"
         aria-pressed="{{ 'true' if square.is_marked else 'false' }}"
         aria-label="{{ 'Free space' if square.is_free_space else square.text }}">
         <span class="wrap-break-word hyphens-auto">{{ square.text }}</span>
         {% if square.is_marked and not square.is_free_space %}
-        <span class="absolute top-0.5 right-0.5 text-green-600 text-xs">✓</span>
+        <span class="absolute top-0.5 right-0.5 text-green-600 text-xs" style="color: #39ff14; text-shadow: 0 0 8px #39ff14; font-size: 1rem;">▸</span>
         {% endif %}
     </button>
     {% endfor %}

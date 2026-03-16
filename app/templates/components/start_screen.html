@@ -1,25 +1,40 @@
 <div id="game-container">
 <div class="flex flex-col items-center justify-center min-h-full p-6 bg-gray-50">
     <div class="text-center max-w-sm">
-        <h1 class="text-4xl font-bold text-gray-900 mb-2">Soc Ops</h1>
-        <p class="text-lg text-gray-600 mb-8">Social Bingo</p>
+        <!-- Main Title with neon glow -->
+        <div class="mb-2 animate-neon-glow">
+            <h1 class="text-5xl font-bold text-amber-500 mb-0" style="letter-spacing: 4px; text-shadow: 0 0 20px #ffff00, 0 0 40px #ff006e;">SOC OPS</h1>
+        </div>
+        
+        <!-- Subtitle -->
+        <p class="text-lg text-green-600 mb-8" style="letter-spacing: 2px; font-weight: 700;">▶ SOCIAL BINGO ◀</p>
 
-        <div class="bg-white rounded-lg p-6 shadow-sm border border-gray-200 mb-8">
-            <h2 class="font-semibold text-gray-800 mb-3">How to play</h2>
-            <ul class="text-left text-gray-600 text-sm space-y-2">
-                <li>• Find people who match the questions</li>
-                <li>• Tap a square when you find a match</li>
-                <li>• Get 5 in a row to win!</li>
-            </ul>
+        <!-- Game Info Box with double border effect -->
+        <div class="bg-gray-50 p-1 mb-8" style="border: 4px solid #ff006e; box-shadow: 0 0 20px #ff006e;">
+            <div class="bg-gray-50 p-4" style="border: 2px solid #00f5ff; box-shadow: inset 0 0 10px rgba(0, 245, 255, 0.2);">
+                <h2 class="font-bold text-amber-500 mb-3" style="font-size: 1.2rem; letter-spacing: 2px;">HOW TO PLAY</h2>
+                <ul class="text-left text-gray-600 text-sm space-y-2" style="color: #39ff14; text-shadow: 0 0 8px #39ff14;">
+                    <li>▸ Find people who match the questions</li>
+                    <li>▸ Tap a square when you find a match</li>
+                    <li>▸ Get 5 in a row to WIN!</li>
+                </ul>
+            </div>
         </div>
 
+        <!-- Start Button with retro style -->
         <button
             hx-post="/start"
             hx-target="#game-container"
             hx-swap="outerHTML"
-            class="w-full bg-accent text-white font-semibold py-4 px-8 rounded-lg text-lg active:bg-accent-light transition-colors">
-            Start Game
+            class="w-full bg-accent text-white font-semibold py-4 px-8 rounded-lg text-lg active:bg-accent-light transition-colors"
+            style="background: #ff006e; border: 4px solid #ffff00; color: #ffff00; font-size: 1.1rem; font-weight: 700; letter-spacing: 2px; text-shadow: 0 0 10px #ffff00; box-shadow: 0 0 25px #ff006e, inset 0 -4px 0 #ffff00;">
+            ▶▶ START GAME ◀◀
         </button>
+        
+        <!-- Retro decoration -->
+        <div style="margin-top: 2rem; color: #00f5ff; font-size: 0.9rem; letter-spacing: 2px; text-shadow: 0 0 8px #00f5ff;">
+            ◆ ◇ ◆ ◇ ◆
+        </div>
     </div>
 </div>
 </div>
