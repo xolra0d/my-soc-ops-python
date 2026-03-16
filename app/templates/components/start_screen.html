@@ -1,40 +1,75 @@
 <div id="game-container">
-<div class="flex flex-col items-center justify-center min-h-full p-6 bg-gray-50">
-    <div class="text-center max-w-sm">
-        <!-- Main Title with neon glow -->
-        <div class="mb-2 animate-neon-glow">
-            <h1 class="text-5xl font-bold text-amber-500 mb-0" style="letter-spacing: 4px; text-shadow: 0 0 20px #ffff00, 0 0 40px #ff006e;">SOC OPS</h1>
-        </div>
+    <!-- Main Landing Container with Scanline Animation -->
+    <div class="landing-container min-h-full flex flex-col items-center justify-center p-6 text-white relative">
         
-        <!-- Subtitle -->
-        <p class="text-lg text-green-600 mb-8" style="letter-spacing: 2px; font-weight: 700;">▶ SOCIAL BINGO ◀</p>
+        <!-- Animated Grid Background (SVG) -->
+        <div class="absolute inset-0 z-0 pointer-events-none opacity-20" style="background-image: url('data:image/svg+xml,%3Csvg width=\'40\' height=\'40\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cpath d=\'M0 0h40v40H0z\' fill=\'none\'/%3E%3Cpath d=\'M0 40h40M40 0v40M0 0v40\' stroke=\'%2300f5ff\' stroke-opacity=\'0.2\'/%3E%3C/svg%3E');"></div>
 
-        <!-- Game Info Box with double border effect -->
-        <div class="bg-gray-50 p-1 mb-8" style="border: 4px solid #ff006e; box-shadow: 0 0 20px #ff006e;">
-            <div class="bg-gray-50 p-4" style="border: 2px solid #00f5ff; box-shadow: inset 0 0 10px rgba(0, 245, 255, 0.2);">
-                <h2 class="font-bold text-amber-500 mb-3" style="font-size: 1.2rem; letter-spacing: 2px;">HOW TO PLAY</h2>
-                <ul class="text-left text-gray-600 text-sm space-y-2" style="color: #39ff14; text-shadow: 0 0 8px #39ff14;">
-                    <li>▸ Find people who match the questions</li>
-                    <li>▸ Tap a square when you find a match</li>
-                    <li>▸ Get 5 in a row to WIN!</li>
-                </ul>
+        <div class="relative z-10 w-full max-w-4xl flex flex-col items-center">
+            
+            <!-- Hero Section -->
+            <div class="text-center mb-12 animate-neon-glow">
+                <div class="glitch-wrapper mb-4">
+                    <h1 class="landing-title font-bold text-amber-500 glitch-text" 
+                        style="text-shadow: 4px 4px 0 #ff006e; font-family: 'Press Start 2P', cursive;">
+                        SOC OPS
+                    </h1>
+                </div>
+                <p class="landing-subtitle text-green-600 font-bold font-mono mt-4">
+                    // SOCIAL INTELLIGENCE OPERATION //
+                </p>
             </div>
-        </div>
 
-        <!-- Start Button with retro style -->
-        <button
-            hx-post="/start"
-            hx-target="#game-container"
-            hx-swap="outerHTML"
-            class="w-full bg-accent text-white font-semibold py-4 px-8 rounded-lg text-lg active:bg-accent-light transition-colors"
-            style="background: #ff006e; border: 4px solid #ffff00; color: #ffff00; font-size: 1.1rem; font-weight: 700; letter-spacing: 2px; text-shadow: 0 0 10px #ffff00; box-shadow: 0 0 25px #ff006e, inset 0 -4px 0 #ffff00;">
-            ▶▶ START GAME ◀◀
-        </button>
-        
-        <!-- Retro decoration -->
-        <div style="margin-top: 2rem; color: #00f5ff; font-size: 0.9rem; letter-spacing: 2px; text-shadow: 0 0 8px #00f5ff;">
-            ◆ ◇ ◆ ◇ ◆
+            <!-- Mission Briefing / Instructions -->
+            <div class="w-full max-w-4xl mb-12">
+                <div class="landing-grid md:grid-cols-3 gap-6">
+                    <!-- Step 1 -->
+                    <div class="landing-card card-cyan">
+                        <div class="text-4xl mb-4">🔍</div>
+                        <h3 class="text-amber-500 font-bold text-lg mb-2 font-mono">IDENTIFY</h3>
+                        <p class="text-gray-400 text-sm font-mono leading-relaxed">
+                            Scan the crowd. Locate targets matching the operational criteria.
+                        </p>
+                    </div>
+                    
+                    <!-- Step 2 -->
+                    <div class="landing-card card-pink">
+                        <div class="text-4xl mb-4">⚡</div>
+                        <h3 class="text-amber-500 font-bold text-lg mb-2 font-mono">ENGAGE</h3>
+                        <p class="text-gray-400 text-sm font-mono leading-relaxed">
+                            Initiate contact. Confirm target identity through verbal verification.
+                        </p>
+                    </div>
+
+                    <!-- Step 3 -->
+                    <div class="landing-card card-green">
+                        <div class="text-4xl mb-4">🏆</div>
+                        <h3 class="text-amber-500 font-bold text-lg mb-2 font-mono">EXECUTE</h3>
+                        <p class="text-gray-400 text-sm font-mono leading-relaxed">
+                            Mark confirmed targets. Complete a row of 5 to win the mission.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CTA Section -->
+            <div class="start-btn-container relative group mt-8 w-full md:w-auto text-center">
+                <div class="btn-glow-bg"></div>
+                <button
+                    hx-post="/start"
+                    hx-target="#game-container"
+                    hx-swap="outerHTML"
+                    class="landing-btn relative z-10 bg-black text-yellow-400 font-bold py-6 px-12 rounded-lg text-2xl"
+                    style="font-family: 'Press Start 2P', cursive; text-shadow: 2px 2px #ff006e;">
+                    INITIATE MISSION
+                </button>
+            </div>
+
+            <!-- Footer Decoration -->
+            <div class="mt-16 text-cyan-400 text-xs opacity-60 font-mono tracking-widest text-center">
+                SECURE CONNECTION ESTABLISHED_ v1.0.5
+            </div>
+
         </div>
     </div>
-</div>
 </div>

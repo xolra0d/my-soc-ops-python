@@ -207,3 +207,196 @@ button:disabled {
 .animate-neon-glow {
     animation: neon-glow-pulse 1.5s ease-in-out infinite;
 }
+
+/* Landing Page Specific Styles */
+.landing-container {
+    background: 
+        linear-gradient(rgba(18, 16, 16, 0.9), rgba(0, 0, 0, 0.9)),
+        repeating-linear-gradient(0deg, transparent 0, transparent 1px, #00f5ff 1px, #00f5ff 2px);
+    background-size: 100% 3px;
+    animation: scanline 8s linear infinite;
+    position: relative;
+    overflow: hidden;
+}
+
+@keyframes scanline {
+    0% { background-position: 0 0; }
+    100% { background-position: 0 100%; }
+}
+
+.glitch-wrapper {
+    position: relative;
+    display: inline-block;
+}
+
+.glitch-text {
+    position: relative;
+    color: #ffff00;
+    text-shadow: 2px 2px #ff006e, -2px -2px #00f5ff;
+    animation: glitch 3s infinite;
+}
+
+@keyframes glitch {
+    0% { transform: translate(0); }
+    2% { transform: translate(-2px, 2px); }
+    4% { transform: translate(2px, -2px); }
+    6% { transform: translate(0); }
+    100% { transform: translate(0); }
+}
+
+.instruction-card {
+    background: rgba(26, 26, 26, 0.8);
+    border: 2px solid #00f5ff;
+    padding: 1rem;
+    position: relative;
+    transition: all 0.3s ease;
+    box-shadow: 0 0 10px rgba(0, 245, 255, 0.2);
+}
+
+.instruction-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 0 20px rgba(0, 245, 255, 0.4);
+    border-color: #ff006e;
+}
+
+.instruction-icon {
+    font-size: 2rem;
+    color: #39ff14;
+    text-shadow: 0 0 10px #39ff14;
+    margin-bottom: 0.5rem;
+}
+
+.start-btn-container {
+    position: relative;
+    z-index: 10;
+}
+
+.start-btn-glow {
+    position: absolute;
+    top: -5px;
+    left: -5px;
+    right: -5px;
+    bottom: -5px;
+    background: linear-gradient(45deg, #ff006e, #ffff00, #00f5ff);
+    z-index: -1;
+    filter: blur(10px);
+    opacity: 0.7;
+    animation: glow-pulse 2s infinite alternate;
+}
+
+@keyframes glow-pulse {
+    0% { opacity: 0.5; filter: blur(10px); }
+    100% { opacity: 1; filter: blur(15px); }
+}
+
+.landing-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+    margin: 2rem 0;
+}
+
+/* Responsive Utilities */
+@media (min-width: 768px) {
+    .md\:text-2xl { font-size: 1.5rem; line-height: 2rem; }
+    .md\:text-7xl { font-size: 4.5rem; line-height: 1; }
+    .md\:grid-cols-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .md\:w-auto { width: auto; }
+}
+
+/* Landing Page Components */
+.landing-title {
+    font-size: 3rem;
+    line-height: 1;
+    letter-spacing: 0.05em;
+}
+
+@media (min-width: 768px) {
+    .landing-title {
+        font-size: 4.5rem;
+    }
+}
+
+.landing-subtitle {
+    font-size: 1.25rem;
+    letter-spacing: 0.2em;
+    animation: pulse 2s infinite;
+}
+
+.landing-card {
+    background-color: rgba(0, 0, 0, 0.8);
+    border: 1px solid #444;
+    border-radius: 0.75rem;
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.landing-card:hover {
+    transform: scale(1.05);
+}
+
+.card-cyan {
+    border-color: #00f5ff;
+    box-shadow: 0 0 15px rgba(0, 245, 255, 0.3);
+}
+
+.card-pink {
+    border-color: #ff006e;
+    box-shadow: 0 0 15px rgba(255, 0, 110, 0.3);
+}
+
+.card-green {
+    border-color: #39ff14;
+    box-shadow: 0 0 15px rgba(57, 255, 20, 0.3);
+}
+
+.btn-glow-bg {
+    position: absolute;
+    inset: -0.25rem;
+    background: linear-gradient(to right, #ec4899, #eab308, #06b6d4);
+    border-radius: 0.5rem;
+    opacity: 0.75;
+    filter: blur(8px);
+    transition: opacity 0.3s ease, filter 0.3s ease;
+    animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+.start-btn-container:hover .btn-glow-bg {
+    opacity: 1;
+    filter: blur(12px);
+    animation-duration: 0.5s;
+}
+
+.landing-btn {
+    width: 100%;
+    border: 2px solid #ffff00;
+    transition: color 0.3s, border-color 0.3s;
+    box-shadow: 0 0 20px rgba(255, 255, 0, 0.5);
+    background: #000;
+    color: #ffff00;
+}
+
+@media (min-width: 768px) {
+    .landing-btn {
+        width: auto;
+    }
+}
+
+.landing-btn:hover {
+    color: #fff;
+    border-color: #fff;
+}
+
+@keyframes pulse {
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: .5;
+    }
+}
+
